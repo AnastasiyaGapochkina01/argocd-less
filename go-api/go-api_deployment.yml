@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: go-api
+  labels:
+    app: go-api
+    tier: backend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: go-api
+      tier: backend
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app: go-api
+        tier: backend
+    spec:
+      containers:
+        - name: go-api
+          image: 10.129.0.8:5000/go-todo
+          ports:
+            - containerPort: 8080
