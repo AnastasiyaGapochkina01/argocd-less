@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: node-app
+  labels:
+    app: node-app
+    tier: backend
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: node-app
+      tier: backend
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app: node-app
+        tier: backend
+    spec:
+      containers:
+        - name: node-app
+          image: 10.129.0.8:5000/simple-node-app:bc1
+          ports:
+            - containerPort: 8080
