@@ -6,7 +6,7 @@ metadata:
     app: node-app
     tier: backend
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       app: node-app
@@ -24,6 +24,6 @@ spec:
     spec:
       containers:
         - name: node-app
-          image: 10.129.0.8:5000/simple-node-app:v44
+          image: 10.129.0.8:5000/simple-node-app:bc1
           ports:
             - containerPort: 8080
